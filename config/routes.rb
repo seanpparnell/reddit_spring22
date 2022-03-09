@@ -16,15 +16,15 @@ Rails.application.routes.draw do
   # POST  -> Create
   # PUT / PATCH -> update
   # DELETE  -> destroy 
-  namespace :api do 
+  # namespace :api do 
     # where all our routes will be in 
     # http verb 'url path', to: 'controller#action'
     # get '/people', to: 'people#index'
 
     # this will create all of the routes for all base crud actions
-    resources :subs do 
-      resources :topics
-    end
+    # resources :subs do 
+    #   resources :topics
+    # end
 
     # do not do this for 3 levels 
     # resources :subs do 
@@ -35,9 +35,9 @@ Rails.application.routes.draw do
     #   end
     # end
 
-    resources :topics, except: [:index, :show, :update, :create, :destroy] do 
-      resources :comments
-    end
+    # resources :topics, except: [:index, :show, :update, :create, :destroy] do 
+    #   resources :comments
+    # end
 
     # resources :comments, except: [:index, :show, :update, :create, :destroy] do 
     #   resources :likes
@@ -64,6 +64,18 @@ Rails.application.routes.draw do
     # /api/subs/3
     # /api/subs/:id
 
+  # end
+
+  namespace :api do
+
+    resources :subs do 
+      resources :topics
+    end
+
+    resources :topics, except: [:index, :show, :update, :create, :destroy] do 
+      resources :comments
+    end
+    
   end
 
 end
