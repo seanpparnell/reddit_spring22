@@ -1,11 +1,22 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-const TopicForm = ({ addTopic }) => {
+const TopicForm = ({ addTopic, id, title, body, updateTopic, setEdit }) => {
   const [topic, setTopic] = useState({ title: '', body: '' })
+
+  useEffect( () => {
+    if (id) {
+      setTopic({ title, body })
+    }
+  }, [])
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    addTopic(topic)
+    if (id) {
+      updateTopic(id, topic)
+      setEdit(false)
+    } else {
+      addTopic(topic)
+    }
     setTopic({ title: '', body: '' })
   }
 

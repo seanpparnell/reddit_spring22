@@ -1,6 +1,17 @@
+
+
+
+
+
+
+
+
+
+
 import { useState } from 'react';
 import SubForm from './SubForm';
 import Topics from '../topics/Topics';
+import { Link } from 'react-router-dom';
 
 const Sub = ({ id, title, updateSub, deleteSub }) => {
   const [editing, setEdit] = useState(false)
@@ -34,7 +45,13 @@ const Sub = ({ id, title, updateSub, deleteSub }) => {
           >
             Delete
           </button>
-          <Topics subId={id} />
+          {/* <Topics subId={id} /> */}
+          <Link 
+            to={`/subs/${id}/topics`}
+            state={{ subId: id, subTitle: title }}
+          >
+            Topics
+          </Link>
         </>
       }
     </>
@@ -57,3 +74,9 @@ const styles = {
 }
 
 export default Sub;
+
+
+
+
+
+
