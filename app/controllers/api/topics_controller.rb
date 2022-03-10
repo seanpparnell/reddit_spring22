@@ -54,7 +54,7 @@ class Api::TopicsController < ApplicationController
       @topic = @sub.topics.find(params[:id])
     end
 
-    def topics_params
+    def topic_params
       params.require(:topic).permit(:title, :body)
     end
 end
